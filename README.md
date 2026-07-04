@@ -1,97 +1,147 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Cordis
 
-# Getting Started
+Cordis is a React Native Android-first heart health tracker focused on two input paths:
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+- **Quick Measure** using a camera-based spot check flow
+- **Health Connect** integration for reading health data synced from supported devices and apps
 
-## Step 1: Start Metro
+The app is currently in active development and the present codebase mainly covers UI, navigation, and early Android integration groundwork.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Current Scope
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+This project currently includes:
 
-```sh
-# Using npm
+- Bottom tab navigation for:
+  - Home
+  - History
+  - Connect
+  - Settings
+- Quick Measure flow screens:
+  - In Progress
+  - Complete
+  - Result
+- History screen UI
+- Connect screen UI
+- Settings screen UI
+- Home dashboard UI
+- Initial Android manifest changes for Health Connect integration
+
+## Product Direction
+
+Cordis is being designed around this flow:
+
+1. **Home** – overview, latest reading, and entry point to quick measure
+2. **Quick Measure** – focused manual heart-rate measurement experience
+3. **Result** – latest measurement outcome
+4. **History** – past readings and trend visualization
+5. **Connect** – Health Connect permission and sync setup
+6. **Settings** – reminders, privacy, connected sources, and profile controls
+
+## Tech Stack
+
+- React Native
+- TypeScript
+- React Navigation
+- Lucide React Native
+- Android Health Connect integration (in progress)
+
+## Project Status
+
+Current state:
+
+- UI foundation is implemented for the main screens
+- Navigation structure is in place
+- Health Connect native setup has started
+- Real data integration is not fully wired yet
+- Quick Measure currently uses placeholder UI/state, not production sensor logic
+
+## Folder Structure
+
+```txt
+src/
+  navigation/
+    MainTabs.tsx
+    RootStack.tsx
+  screens/
+    HomeScreen.tsx
+    HistoryScreen.tsx
+    ConnectScreen.tsx
+    SettingsScreen.tsx
+    QuickMeasureInProgressScreen.tsx
+    QuickMeasureCompleteScreen.tsx
+    ResultScreen.tsx
+  theme/
+    colors.ts
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- React Native development environment
+- Android Studio
+- A real Android device is recommended for Health Connect testing
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start Metro
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### Run Android app
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+## Health Connect Notes
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+Cordis is being built to use **Health Connect** as the Android health data layer.
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+Expected data flow:
 
-```sh
-bundle install
-```
+**Wearable / vendor app -> Health Connect -> Cordis**
 
-Then, and every time you update your native dependencies, run:
+This means the app is intended to read standardized health records from Health Connect rather than integrating directly with each wearable vendor separately.
 
-```sh
-bundle exec pod install
-```
+## Current Limitations
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+- Android-first implementation
+- Health Connect integration is not fully completed yet
+- Camera-based quick measure is still a UI flow, not final measurement logic
+- Some displayed health values are mock data
+- Settings actions are mostly placeholder UI at this stage
 
-```sh
-# Using npm
-npm run ios
+## Roadmap
 
-# OR using Yarn
-yarn ios
-```
+Planned next steps:
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+- Finish Health Connect setup and permission flow
+- Read heart-rate and step data from Health Connect
+- Replace mock history data with real records
+- Implement real camera-based quick measure logic
+- Add reminder scheduling
+- Improve result interpretation and trend insights
+- Refine UI polish and state management
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Development Notes
 
-## Step 3: Modify your app
+This repository is currently optimized for rapid iteration and feature validation. Expect changes in:
 
-Now that you have successfully run the app, let's make changes!
+- screen structure
+- navigation typing
+- native Android setup
+- permission handling
+- health data models
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Disclaimer
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Cordis is a software project under development and is not a medical device. Measurements and insights should not be treated as diagnostic or emergency medical guidance.
